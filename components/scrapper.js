@@ -20,7 +20,7 @@ export default class CurrencyRates {
         })
         _rates[this.options.base_currency] = 1.00
         return {
-            base_currency: this.options.base_currency,
+            base_currency: this.options.base_currency.toUpperCase(),
             rates: _rates
         }
     }
