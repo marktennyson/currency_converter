@@ -12,6 +12,7 @@
     "cheerio": "^1.0.0-rc.12",
     "cors": "^2.8.5",
     "next": "14.1.4",
+    "nextjs-current-url": "^1.0.3",
     "react": "^18",
     "react-dom": "^18"
   },
