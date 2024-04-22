@@ -5,7 +5,7 @@ const FromCurrencySelect = (props) => {
   return (
     <div className="relative inline-block">
       <select defaultValue={props.defaultVal.toUpperCase()} 
-        className="cursor-pointer w-60 bg-lime-500 hover:bg-lime-700 hover:font-black text-black text-white appearance-none border border-gray-300 rounded-md py-2 pl-4 pr-10 text-sm leading-5 focus:outline-none" 
+        className="cursor-pointer w-60 bg-lime-500 hover:bg-lime-700 hover:font-black text-black appearance-none border border-gray-300 rounded-md py-2 pl-4 pr-10 text-sm leading-5 focus:outline-none" 
         id='fromCurrency'
         onChange={(e) => {props.setFromCurrency(e.target.value.toUpperCase()); props.setToAmount(null);}}
         >
