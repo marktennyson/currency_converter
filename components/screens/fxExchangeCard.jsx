@@ -4,17 +4,20 @@ import { useState } from 'react';
 import Calculator from "../calculator"
 import currencyCodes from "../../data/currency_codes"
 import FetchSpinner from "../FetchSpinner"
+import FromCurrencySelect from '../CurrencySelect/FromCurrencySelect';
+import ToCurrencySelect from '../CurrencySelect/ToCurrencySelect';
 
 const FxExchangeCard = () => {
-  const [fromCurrency, setFromCurrency] = useState('');
-  const [toCurrency, setToCurrency] = useState('');
+  const [fromCurrency, setFromCurrency] = useState('USD');
+  const [toCurrency, setToCurrency] = useState('INR');
   const [fromAmount, setFromAmount] = useState('');
   const [toAmount, setToAmount] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const availableCurrencies = Object.values(currencyCodes);
+
   async function handleExchange() {
-    const availableCurrencies = Object.values(currencyCodes);
-    console.log("availableCurrencies:", availableCurrencies)
+    setToAmount(0);
     if (!fromCurrency || !availableCurrencies.includes(fromCurrency)){
       alert('Please enter a valid from currency');
       return;
@@ -37,23 +40,11 @@ const FxExchangeCard = () => {
       <div className='grid grid-cols-2 gap-2'>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fromCurrency">From Currency:</label>
-          <input
-            id="fromCurrency"
-            type="text"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={fromCurrency}
-            onChange={(e) => {setFromCurrency(e.target.value.toUpperCase()); setToAmount(null);}}
-          />
+          <FromCurrencySelect defaultVal={'USD'} setFromCurrency={setFromCurrency} setToAmount={setToAmount} ></FromCurrencySelect>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="toCurrency">To Currency:</label>
-          <input
-            id="toCurrency"
-            type="text"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={toCurrency}
-            onChange={(e) => {setToCurrency(e.target.value.toUpperCase()); setToAmount(null);}}
-          />
+          <ToCurrencySelect defaultVal={'INR'} setToCurrency={setToCurrency} setToAmount={setToAmount} ></ToCurrencySelect>
         </div>
 
       </div>
@@ -68,7 +59,7 @@ const FxExchangeCard = () => {
           />
         </div>
       <button 
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         onClick={handleExchange}
       >
         Exchange
@@ -77,10 +68,10 @@ const FxExchangeCard = () => {
       {toAmount && (
         <div className='mt-5'>
           <div className='text-black text-lg mt-5'>
+            <p className='mb-4 mt-2'>{`${fromAmount} ${fromCurrency.toUpperCase()} = ${toAmount} ${toCurrency.toUpperCase()}`}</p>
             <p>Currency: {`${fromCurrency.toUpperCase()} to ${toCurrency.toUpperCase()}`}</p>
-            <p>From amount: {`${fromAmount} ${fromCurrency.toUpperCase()}`}</p>
-            <p>To amount: {`${toAmount} ${toCurrency.toUpperCase()}`}</p>
-            <p>{`${fromAmount} ${fromCurrency.toUpperCase()} = ${toAmount} ${toCurrency.toUpperCase()}`}</p>
+            {/* <p>From amount: {`${fromAmount} ${fromCurrency.toUpperCase()}`}</p>
+            <p>To amount: {`${toAmount} ${toCurrency.toUpperCase()}`}</p> */}
           </div>
         </div>
       )}
