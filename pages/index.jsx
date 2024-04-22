@@ -13,6 +13,7 @@ export default function Home() {
     <main>
       <Head>
         <title>Forex converter -- Free</title>
+        <link rel="icon" href="https://img.icons8.com/color/56/swiss-franc--v1.png" sizes="any" />
       </Head>
         <div className="max-w-2xl mt-5 w-1/2 p-4 mx-auto text-center p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div className="">
