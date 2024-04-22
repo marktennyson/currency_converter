@@ -3,12 +3,14 @@
 import { useState } from 'react';
 import Calculator from "../calculator"
 import currencyCodes from "../../data/currency_codes"
+import FetchSpinner from "../FetchSpinner"
 
 const FxExchangeCard = () => {
   const [fromCurrency, setFromCurrency] = useState('');
   const [toCurrency, setToCurrency] = useState('');
   const [fromAmount, setFromAmount] = useState('');
   const [toAmount, setToAmount] = useState('');
+  const [loading, setLoading] = useState(false);
 
   async function handleExchange() {
     const availableCurrencies = Object.values(currencyCodes);
@@ -23,9 +25,10 @@ const FxExchangeCard = () => {
       alert('Please enter a valid amount.')
       return;
     }
-
+    setLoading(true);
     let res = await Calculator(fromCurrency, toCurrency, fromAmount)
     setToAmount(res); // to show the output
+    setLoading(false);
   };
 
   return (
@@ -70,6 +73,7 @@ const FxExchangeCard = () => {
       >
         Exchange
       </button>
+      <FetchSpinner loading={loading} />
       {toAmount && (
         <div className='mt-5'>
           <div className='text-black text-lg mt-5'>

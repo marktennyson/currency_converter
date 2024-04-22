@@ -20,7 +20,7 @@ export default function Home() {
                 <FxExchangeCard/>
             </div>
             <div>
-              <p className="mt-2 p-0 m-0">
+              <p className="mt-4 p-0 m-0">
                 <span className="font-black text-medium">API Endpoint:&nbsp;</span>
                 <a className="italic text-green-400 hover:underline hover:text-blue-400" href={endPoint} target="_blank">{endPoint}</a>
               </p>
