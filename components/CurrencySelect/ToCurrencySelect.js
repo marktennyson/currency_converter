@@ -1,5 +1,6 @@
 import React from 'react';
 import currencyCodes from "../../data/currency_codes"
+// import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 const ToCurrencySelect = (props) => {
   return (
